@@ -43,7 +43,7 @@ public class ProductRepository {
 					p.setProductName(updatedProduct.getProductName());
 					p.setCategory(updatedProduct.getCategory());
 					p.setPrice(updatedProduct.getPrice());
-					p.setQuantity(updatedProduct.getQuantity());
+					p.setStocks(updatedProduct.getStocks());
 				})
 				.findFirst()
 				.isPresent();
@@ -73,9 +73,9 @@ public class ProductRepository {
 				  {
 					  p.setPrice(partialUpdate.getPrice());
 				  }
-				  if (partialUpdate.getQuantity()>0)
+				  if (partialUpdate.getStocks()>0)
 				  {
-					  p.setQuantity(partialUpdate.getQuantity());
+					  p.setStocks(partialUpdate.getStocks());
 				  }
 				 return p;
 					}).orElse(null);

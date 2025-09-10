@@ -14,36 +14,38 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cm.zepto.model.Product;
 import com.cm.zepto.service.ProductService;
+import com.cm.zepto.service.ProductsService;
 
 @RestController
 public class ProductController {
 
 	@Autowired
 	private ProductService service ;
-
+    @Autowired
+    private ProductsService pService;
     @GetMapping("/")
     public List<Product> getAll()
     {
-    	return service.getAllProducts();
+    	return pService.getAllItems();
     }
     
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable("id") int id)
     {
-    	return service.getById(id);
+    	return pService.getItemById(id);
     }
     
     @PostMapping("/")
     public Product addProduct(@RequestBody Product p)
     {
-    	service.addProduct(p);
-    	return service.getById(p.getProductId());
+    	
+    	return pService.saveItem(p);
     }
     
     @DeleteMapping("/{id}")
-    public String deleteById(@PathVariable("id") int id)
+    public void deleteById(@PathVariable("id") int id)
     {
-    	return service.deleteProduct(id);
+    	pService.deleteItem(id);
     }
     
     @PutMapping("/{id}")

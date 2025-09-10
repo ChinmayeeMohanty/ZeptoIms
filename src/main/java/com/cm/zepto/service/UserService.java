@@ -1,6 +1,7 @@
 package com.cm.zepto.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,24 +22,26 @@ public class UserService {
 	
 	public String addUser(User user)
 	{
-	  userRepo.addUser(user);
+	  userRepo.save(user);
 	  return "User added Successfully ";
 	}
 	
-	public User findById(int id)
+	public Optional<User> findUserById(int id)
 	{
 		return userRepo.findById(id);
 	}
-	public String updateUser(int id,User u)
+	
+	public void deleteUser(int id)
 	{
-		return userRepo.updateUser(id, u);
+		userRepo.deleteById(id);
 	}
-	public String deleteUser(int id)
-	{
-		return userRepo.removeUser(id);
-	}
-	public User PatchUpdate(int id,User updatePartial)
-	{
-		return userRepo.patchUpdate(id, updatePartial);
-	}
+//	public String updateUser(int id,User u)
+//	{
+//		return userRepo.updateUser(id, u);
+//	}
+	
+//	public User patchUpdate(int id,User updatePartial)
+//	{
+//		return userRepo.patchUpdate(id, updatePartial);
+//	}
 }
