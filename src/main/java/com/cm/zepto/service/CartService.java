@@ -18,12 +18,11 @@ public class CartService  {
 	{
 		return cartRepo.save(cart);
 	}
-    
-	public List<Cart> getUserCart(int userId)
-	{
-		return cartRepo.findAll().stream().filter(c->c.getUser().getUserId() == userId).toList();
-	}
 	
+	public List<Cart> getUserCart(int userId) {
+	    return cartRepo.findByUserUserId(userId);
+	}
+
 	public void removeFromCart(int cartId)
 	{
 		cartRepo.deleteById(cartId);
