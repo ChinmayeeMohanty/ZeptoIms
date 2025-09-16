@@ -1,6 +1,7 @@
 package com.cm.zepto.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +22,12 @@ public class CartController {
    private CartService cartService;
    
    @PostMapping("/add")
-   public Cart addToCart(@RequestBody Cart cart)
+   public Cart addToCart(@RequestBody Map<String,Object> payLoad)
    {
-	   return cartService.addToCart(cart);
+	   int userId=(int)payLoad.get("userId");
+	   int productId=(int)payLoad.get("productId");
+	   int quantity=(int)payLoad.get("quantity");
+	   return cartService.addToCart(userId,productId,quantity);
    }
    
    @GetMapping("/user/{userId}")

@@ -19,7 +19,11 @@ private CartRepo cartRepo;
 
 public Order placeOrder(int uid)
 {
-	List<Cart> cartItems= cartRepo.findAll().stream().filter(c->c.getUser().getUserId()==uid).toList();
+	List<Cart> cartItems= cartRepo.findByUserId(uid);
+	System.out.println("Fetched carts for userId=" + uid + ": " + cartItems);
+	if (cartItems == null || cartItems.isEmpty()) {
+        throw new RuntimeException("Cart is empty for user with id: " + uid);
+    }
 	double total=cartItems.stream().mapToDouble(c->c.getProduct().getPrice()*c.getQuantity()).sum();
 	Order order=new Order();
 	order.setUser(cartItems.get(0).getUser());
