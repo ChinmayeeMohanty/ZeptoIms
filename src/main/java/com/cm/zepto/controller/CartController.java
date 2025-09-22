@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,5 +37,11 @@ public class CartController {
 	   return cartService.getUserCart(userId);
    }
    
+   @DeleteMapping("/{cartId}")
+   public String removeCart(@PathVariable int cartId)
+   {
+	   cartService.removeFromCart(cartId);
+	   return "Cart delete successfully";
+   }
    
 }

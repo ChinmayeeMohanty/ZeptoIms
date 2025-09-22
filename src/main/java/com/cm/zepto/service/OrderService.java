@@ -19,7 +19,7 @@ private CartRepo cartRepo;
 
 public Order placeOrder(int uid)
 {
-	List<Cart> cartItems= cartRepo.findByUserId(uid);
+	List<Cart> cartItems= cartRepo.findByUserUserId(uid);
 	System.out.println("Fetched carts for userId=" + uid + ": " + cartItems);
 	if (cartItems == null || cartItems.isEmpty()) {
         throw new RuntimeException("Cart is empty for user with id: " + uid);
@@ -30,6 +30,8 @@ public Order placeOrder(int uid)
 	order.setAmount(total);
 	order.setStatus("PENDING");
 	order.setOrderDate(java.time.LocalDateTime.now());
+	cartRepo.deleteAll(cartItems);
+	
 	return orderRepository.save(order);
 	
 }

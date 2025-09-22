@@ -38,7 +38,7 @@ public class CartService  {
 	
 	
 	public List<Cart> getUserCart(int userId) {
-	    return cartRepo.findByUserId(userId);
+	    return cartRepo.findByUserUserId(userId);
 	}
 
 	public void removeFromCart(int cartId)

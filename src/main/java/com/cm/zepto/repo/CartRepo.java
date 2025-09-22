@@ -9,5 +9,5 @@ import com.cm.zepto.model.Cart;
 
 @Repository
 public interface CartRepo extends JpaRepository<Cart,Integer>{
-	List<Cart> findByUserId(int id);
+	List<Cart> findByUserUserId(int id);
 }

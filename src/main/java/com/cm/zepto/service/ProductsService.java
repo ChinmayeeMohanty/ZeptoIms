@@ -30,5 +30,45 @@ public class ProductsService {
 	{
 		pRepo.deleteById(id);
 	}
+	public Product updateProduct(int pid,Product updatedProduct)
+	{
+		
+		return pRepo.findById(pid).map(existing ->{
+			existing.setProductName(updatedProduct.getProductName());
+			existing.setCategory(updatedProduct.getCategory());
+			existing.setPrice(updatedProduct.getPrice());
+			existing.setStocks(updatedProduct.getStocks());
+			return pRepo.save(existing);
+			
+		}).orElse(null);
+	}
+	
+	public Product patchProduct(int id,Product partialUpdate)
+	{
+		return pRepo.findById(id)
+			.map(
+					p ->{
+				  if (partialUpdate.getProductName()!=null)
+				  {
+					  p.setProductName(partialUpdate.getProductName());
+				  }
+				  if (partialUpdate.getCategory()!=null)
+				  {
+					  p.setCategory(partialUpdate.getCategory());
+				  }
+				  if (partialUpdate.getPrice()>0.0)
+				  {
+					  p.setPrice(partialUpdate.getPrice());
+				  }
+				  if (partialUpdate.getStocks()>0)
+				  {
+					  p.setStocks(partialUpdate.getStocks());
+				  }
+				 return pRepo.save(p);
+					}).orElse(null);
+			
+	}
+	
+
 	
 }

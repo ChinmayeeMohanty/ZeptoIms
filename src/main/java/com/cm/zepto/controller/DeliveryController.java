@@ -1,6 +1,7 @@
 package com.cm.zepto.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class DeliveryController {
 	}
 	
 	@PutMapping("/pickup/{id}")
-	public Delivery pickup(@PathVariable("id") int id)
+	public Map<String,Object> pickup(@PathVariable("id") int id)
 	{
 		return deliveryService.pickupDelivery(id);
 	}
