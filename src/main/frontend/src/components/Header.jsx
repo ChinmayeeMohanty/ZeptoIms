@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Header() {
+function Header({userName}) {
   return (
     <div style={{display:"flex",justifyContent:'space-between',alignItems:'center',padding:'15px',backgroundColor:"#333", color:"white"}}>
       <h2>ZEPTO IMS</h2>

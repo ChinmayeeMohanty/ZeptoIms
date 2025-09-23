@@ -1,7 +1,6 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import Header from "./components/Header";
+import ProductGrid from "./components/ProductGrid";
 
 function App() {
   const [user, setUser] = useState("");
@@ -36,8 +35,8 @@ function App() {
   return (
     <>
       <div>
-       <Header/>
-       <ProductsGrid/>
+      <Header username={user} />
+      <ProductGrid products={products} onChangeQuantity={handleQuantityChange} />
        {/* <OrderSummary/>
        <PaymentView/>  */}
       </div>
